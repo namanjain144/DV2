@@ -1,0 +1,13 @@
+month,month_order,season,pct_of_coastal_deaths
+Jul,1,Winter,8
+Aug,2,Winter,5
+Sep,3,Spring,4
+Oct,4,Spring,6
+Nov,5,Spring,5
+Dec,6,Summer,14
+Jan,7,Summer,15
+Feb,8,Summer,12
+Mar,9,Autumn,11
+Apr,10,Autumn,11
+May,11,Autumn,4
+Jun,12,Winter,3

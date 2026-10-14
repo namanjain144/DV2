@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Between the flags: drowning on Australia's coast</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.30.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.21.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.26.0"></script>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Between the flags</h1>
+      <p class="lede">357 people drowned in Australia in the year to June 2025. This page looks at where, when and who, and at the volunteers who pull thousands more out of the surf every summer.</p>
+      <p class="byline">By Naman, FIT3179 Data Visualisation 2. Draft, October 2026.</p>
+    </div>
+    <div class="flag" role="img" aria-label="Red and yellow surf patrol flag"></div>
+  </div>
+</header>
+
+<!-- Section 1: the national picture -->
+<section>
+  <div class="wrap">
+    <div class="intro">
+      <h2>Where Australians drown</h2>
+      <p>Counting deaths alone makes big states look the most dangerous. Dividing by population gives a fairer comparison: the number of drowning deaths for every 100,000 people living in each state.</p>
+    </div>
+    <div class="row">
+      <div class="text">
+        <p class="callout">1.65</p>
+        <p class="callout-label">drowning deaths per 100,000 people in Western Australia, the highest state rate in 2024/25</p>
+        <p>Western Australia, Queensland, the Northern Territory and New South Wales all sit above 1.5. Victoria's rate is less than half of these.</p>
+        <p>The ACT is too small to see at this scale. It recorded one drowning death in 2024/25.</p>
+      </div>
+      <figure>
+        <div id="vis-state-map" class="chart"></div>
+        <figcaption>Unintentional drowning deaths per 100,000 people, all locations (beaches, rivers, pools and more), 1 July 2024 to 30 June 2025. Hover over a state for details. Source: Royal Life Saving National Drowning Report 2025.</figcaption>
+      </figure>
+    </div>
+    <div class="row">
+      <div class="text">
+        <h3>Is this year unusual?</h3>
+        <p>Each line joins a state's 10-year average rate to its 2024/25 rate. <strong>Red lines went up.</strong> Five states were above their usual level, and South Australia's death count was 71% above its 10-year average.</p>
+        <p>The Northern Territory fell sharply, from 2.82 to 1.53. With only four deaths, small changes move its rate a lot.</p>
+      </div>
+      <figure>
+        <div id="vis-state-slope" class="chart"></div>
+        <figcaption>Drowning deaths per 100,000 people, 10-year average compared with 2024/25. Source: Royal Life Saving National Drowning Report 2025.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- Section 2: the coast -->
+<section class="tint">
+  <div class="wrap">
+    <div class="intro">
+      <h2>When and how the coast turns deadly</h2>
+      <p>Coastal drowning follows the calendar. The charts below combine five years of coastal deaths across Australia, from July 2020 to June 2025.</p>
+    </div>
+    <div class="row even">
+      <figure>
+        <div id="vis-month-radial" class="chart"></div>
+        <figcaption>Share of coastal drowning deaths in each month, 2020/21 to 2024/25. Bar length shows the share. The year starts with July at the top and runs clockwise. Source: Royal Life Saving National Drowning Report 2025.</figcaption>
+      </figure>
+      <div class="text">
+        <p class="callout">41%</p>
+        <p class="callout-label">of coastal drowning deaths happen in December, January and February</p>
+        <p>Summer brings the crowds, the school holidays and the busiest patrol season. Deaths stay high into March and April, after the summer holidays end but while the water is still warm.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="text">
+        <h3>Most were just going for a swim</h3>
+        <p>More than a third of people who drowned on the coast were swimming or playing in the water. Boating and diving follow well behind.</p>
+        <p>One in twenty died trying to rescue someone else.</p>
+      </div>
+      <figure>
+        <div id="vis-activity" class="chart"></div>
+        <figcaption>Share of coastal drowning deaths by what the person was doing, 2020/21 to 2024/25. Other causes (3%) and unknown (6%) are not shown. Source: Royal Life Saving National Drowning Report 2025.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- Section 3: who drowns -->
+<section>
+  <div class="wrap">
+    <div class="intro">
+      <h2>Who drowns is changing</h2>
+      <p>The picture of drowning as a young person's risk is out of date. Older Australians now make up a growing share of deaths.</p>
+    </div>
+    <div class="row">
+      <div class="text">
+        <p class="callout">10%</p>
+        <p class="callout-label">of all drowning deaths in 2024/25 were people aged 65 to 69, up from 7% on average</p>
+        <p>Grey dots show each age group's usual share over the past 10 years. Red dots show 2024/25. <strong>Pink bars mean an age group's share grew.</strong></p>
+        <p>The biggest increases were among people aged 60 and over. Young children's share fell, from 7% to 4%.</p>
+      </div>
+      <figure>
+        <div id="vis-age" class="chart"></div>
+        <figcaption>Share of all Australian drowning deaths by 5-year age group, 2024/25 compared with the 10-year average (2014/15 to 2023/24). Hover for each group's drowning rate. Source: Royal Life Saving National Drowning Report 2025.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- Section 4: NSW up close -->
+<section class="tint">
+  <div class="wrap">
+    <div class="intro">
+      <h2>New South Wales, up close</h2>
+      <p>NSW has the most drowning deaths of any state. Surf Life Saving data lets us look along its coastline.</p>
+    </div>
+    <div class="row">
+      <div class="text">
+        <p class="callout">52</p>
+        <p class="callout-label">people drowned on the NSW coast in 2024/25, above the 10-year average of 46</p>
+        <p>The year before was the worst in a decade, with 61 deaths.</p>
+        <p>Every one of the 52 deaths in 2024/25 happened at an unpatrolled location, outside patrol hours or away from the red and yellow flags.</p>
+      </div>
+      <figure>
+        <div id="vis-nsw-trend" class="chart"></div>
+        <figcaption>Coastal drowning deaths in NSW each financial year (July to June). Source: Surf Life Saving Australia National Coastal Safety Report 2025.</figcaption>
+      </figure>
+    </div>
+    <div class="row">
+      <div class="text">
+        <h3>Busy beaches are not the riskiest</h3>
+        <p><strong>Circle size</strong> shows how many people drowned in each Surf Life Saving NSW branch over 10 years. <strong>Circle colour</strong> shows the rate per 100,000 people.</p>
+        <p>Sydney has the most deaths (101) but one of the lower rates. The Far South Coast has fewer deaths but the highest rate, 4.55, about four times Sydney's.</p>
+        <p>Circles are placed at a main town in each branch, so their positions are approximate.</p>
+      </div>
+      <figure>
+        <div id="vis-nsw-map" class="chart"></div>
+        <figcaption>Coastal drowning deaths and average rates by Surf Life Saving NSW branch, 2015 to 2025. Source: Surf Life Saving Australia National Coastal Safety Report 2025. Branch locations placed by the author.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- Section 5: the lifesavers -->
+<section>
+  <div class="wrap">
+    <div class="intro">
+      <h2>The people between the flags</h2>
+      <p>More than 21,000 patrolling members kept watch on NSW beaches in 2024/25. They gave over 680,000 volunteer patrol hours.</p>
+    </div>
+    <div class="row">
+      <div class="text">
+        <p class="callout">3,494</p>
+        <p class="callout-label">rescues on NSW beaches in 2024/25</p>
+        <p>More than four in ten were made on a rescue board, the long foam board lifesavers paddle out to swimmers. IRB means inflatable rescue boat and RWC means rescue watercraft (jet ski).</p>
+      </div>
+      <figure>
+        <div id="vis-rescues" class="chart"></div>
+        <figcaption>NSW surf rescues by craft or method, 2024/25. JRB, ORB and RIB are other types of rescue boat. Source: Surf Life Saving Australia National Coastal Safety Report 2025.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <h2>About this page</h2>
+    <ul>
+      <li><strong>Author:</strong> Naman, Monash University, FIT3179 Data Visualisation, Semester 2 2026. Draft published October 2026.</li>
+      <li><strong>Data source 1:</strong> Royal Life Saving Society - Australia (2025), <em>National Drowning Report 2025</em>. <a href="https://doi.org/10.62977/118009">doi.org/10.62977/118009</a></li>
+      <li><strong>Data source 2:</strong> Surf Life Saving Australia (2025), <em>National Coastal Safety Report 2025</em>, NSW section. <a href="https://www.surflifesaving.com.au/">surflifesaving.com.au</a></li>
+      <li><strong>Map boundaries:</strong> Australian state boundaries from the australian-states dataset by Rowan Hogan on GitHub, based on Australian Bureau of Statistics boundaries. <a href="https://github.com/rowanhogan/australian-states">github.com/rowanhogan/australian-states</a></li>
+      <li><strong>Method:</strong> Figures were transcribed from the PDF reports into CSV files and checked against the original pages. Page references and known differences between report pages are listed in <a href="data/README.md">data/README.md</a>.</li>
+      <li><strong>Tools:</strong> Charts made with Vega-Lite. AI assistance (Claude) was used to extract data from the PDFs, draft chart specifications and check grammar.</li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  // Shared look for every chart, so the JSON specs stay focused on data and encoding
+  const theme = {
+    font: "Barlow, Helvetica Neue, Arial, sans-serif",
+    background: null,
+    view: {stroke: null},
+    axis: {labelColor: "#5b6b78", titleColor: "#1d2b36", titleFontWeight: 600, labelFontSize: 12, titleFontSize: 13, gridColor: "#e3eaee", domainColor: "#c3cfd6", tickColor: "#c3cfd6"},
+    legend: {labelColor: "#1d2b36", titleColor: "#1d2b36", labelFontSize: 12, titleFontSize: 12},
+    text: {font: "Barlow, Helvetica Neue, Arial, sans-serif"}
+  };
+  const opts = {actions: false, renderer: "svg", config: theme};
+  const charts = {
+    "#vis-state-map": "specs/01_state_rate_choropleth.vl.json",
+    "#vis-state-slope": "specs/02_state_slope.vl.json",
+    "#vis-month-radial": "specs/03_coastal_month_radial.vl.json",
+    "#vis-activity": "specs/04_coastal_activity_lollipop.vl.json",
+    "#vis-age": "specs/05_age_dumbbell.vl.json",
+    "#vis-nsw-trend": "specs/06_nsw_trend_bars.vl.json",
+    "#vis-nsw-map": "specs/07_nsw_branch_symbol_map.vl.json",
+    "#vis-rescues": "specs/08_nsw_rescues_bars.vl.json"
+  };
+  for (const [el, spec] of Object.entries(charts)) {
+    vegaEmbed(el, spec, opts).catch(err => {
+      document.querySelector(el).textContent = "This chart could not load: " + err.message;
+    });
+  }
+</script>
+</body>
+</html>

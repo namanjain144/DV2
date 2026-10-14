@@ -1,0 +1,9 @@
+state,state_code,deaths_2024_25,deaths_10yr_avg,rate_2024_25_per_100k,rate_10yr_avg_per_100k,change_vs_10yr_avg_pct
+New South Wales,NSW,129,99,1.52,1.25,30
+Victoria,VIC,52,48,0.75,0.74,8
+Queensland,QLD,90,66,1.62,1.31,36
+Western Australia,WA,49,36,1.65,1.35,36
+South Australia,SA,24,14,1.27,0.79,71
+Tasmania,TAS,8,9,1.39,1.66,-11
+Northern Territory,NT,4,7,1.53,2.82,-43
+Australian Capital Territory,ACT,1,2,0.21,0.46,-50

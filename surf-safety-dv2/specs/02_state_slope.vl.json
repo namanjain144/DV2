@@ -1,0 +1,173 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Slope chart: drowning rate per 100,000 in each state, 10-year average compared with 2024/25.",
+  "width": "container",
+  "height": 420,
+  "data": {
+    "url": "data/aus_drowning_by_state_2024_25.csv"
+  },
+  "transform": [
+    {
+      "fold": [
+        "rate_10yr_avg_per_100k",
+        "rate_2024_25_per_100k"
+      ],
+      "as": [
+        "period_key",
+        "rate"
+      ]
+    },
+    {
+      "calculate": "datum.period_key == 'rate_10yr_avg_per_100k' ? '10-year average' : '2024/25'",
+      "as": "period"
+    },
+    {
+      "calculate": "datum.rate_2024_25_per_100k > datum.rate_10yr_avg_per_100k ? 'Higher than usual' : 'Lower than usual'",
+      "as": "direction"
+    },
+    {
+      "calculate": "{'WA':1.80,'QLD':1.67,'NT':1.54,'NSW':1.41,'TAS':1.28,'SA':1.15,'VIC':0.75,'ACT':0.21}[datum.state_code]",
+      "as": "label_y"
+    },
+    {
+      "calculate": "datum.state_code + '  ' + format(datum.rate_2024_25_per_100k, '.2f')",
+      "as": "label"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "period",
+      "type": "ordinal",
+      "title": null,
+      "sort": [
+        "10-year average",
+        "2024/25"
+      ],
+      "axis": {
+        "labelAngle": 0,
+        "domain": false,
+        "ticks": false,
+        "labelFontSize": 13
+      },
+      "scale": {
+        "padding": 0.6
+      }
+    },
+    "y": {
+      "field": "rate",
+      "type": "quantitative",
+      "title": "Deaths per 100,000 people",
+      "scale": {
+        "domain": [
+          0,
+          3
+        ]
+      }
+    },
+    "detail": {
+      "field": "state_code"
+    },
+    "color": {
+      "field": "direction",
+      "type": "nominal",
+      "title": null,
+      "scale": {
+        "domain": [
+          "Higher than usual",
+          "Lower than usual"
+        ],
+        "range": [
+          "#d7262e",
+          "#8a99a6"
+        ]
+      },
+      "legend": {
+        "orient": "top"
+      }
+    },
+    "opacity": {
+      "condition": {
+        "param": "pick",
+        "value": 1
+      },
+      "value": 0.2
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.5
+      },
+      "params": [
+        {
+          "name": "pick",
+          "select": {
+            "type": "point",
+            "fields": [
+              "state_code"
+            ],
+            "on": "pointerover",
+            "clear": "pointerout"
+          }
+        }
+      ]
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 60
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.period == '2024/25'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "fontSize": 12
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        },
+        "y": {
+          "field": "label_y",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "opacity": 0,
+        "size": 400
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "state",
+            "title": "State"
+          },
+          {
+            "field": "period",
+            "title": "Period"
+          },
+          {
+            "field": "rate",
+            "title": "Rate per 100,000",
+            "format": ".2f"
+          }
+        ],
+        "opacity": {
+          "value": 0
+        }
+      }
+    }
+  ]
+}

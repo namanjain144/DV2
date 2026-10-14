@@ -1,0 +1,30 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Bar chart: NSW coastal drowning deaths per year, 2015/16 to 2024/25, with the 10-year average.",
+  "width": "container",
+  "height": 300,
+  "layer": [
+    {
+      "data": {"url": "data/nsw_coastal_drownings_by_year.csv"},
+      "mark": {"type": "bar", "cornerRadiusEnd": 2},
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal", "title": null, "axis": {"labelAngle": 0}},
+        "y": {"field": "coastal_drowning_deaths", "type": "quantitative", "title": "Coastal drowning deaths"},
+        "color": {"condition": {"test": "datum.year == '2023/24'", "value": "#d7262e"}, "value": "#5ea9c4"},
+        "tooltip": [{"field": "year", "title": "Year"}, {"field": "coastal_drowning_deaths", "title": "Deaths"}]
+      }
+    },
+    {
+      "data": {"values": [{"avg": 46, "label": "10-year average: 46"}]},
+      "layer": [
+        {"mark": {"type": "rule", "strokeDash": [5, 4], "color": "#123b57", "strokeWidth": 1.5}, "encoding": {"y": {"field": "avg", "type": "quantitative"}}},
+        {"mark": {"type": "text", "align": "left", "x": 4, "dy": -8, "fontSize": 11, "color": "#123b57"}, "encoding": {"y": {"field": "avg", "type": "quantitative"}, "text": {"field": "label"}}}
+      ]
+    },
+    {
+      "data": {"values": [{"year": "2023/24", "deaths": 61, "note": "Highest in 10 years"}]},
+      "mark": {"type": "text", "dy": -10, "fontSize": 11, "color": "#d7262e", "fontWeight": 600},
+      "encoding": {"x": {"field": "year", "type": "ordinal"}, "y": {"field": "deaths", "type": "quantitative"}, "text": {"field": "note"}}
+    }
+  ]
+}

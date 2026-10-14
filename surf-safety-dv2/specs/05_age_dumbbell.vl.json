@@ -1,0 +1,139 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Dumbbell chart: share of Australian drowning deaths by age group, 2024/25 compared with the 10-year average.",
+  "width": "container",
+  "height": 440,
+  "data": {
+    "url": "data/aus_drowning_by_age_2024_25.csv"
+  },
+  "transform": [
+    {
+      "window": [
+        {
+          "op": "row_number",
+          "as": "age_order"
+        }
+      ]
+    },
+    {
+      "calculate": "datum.pct_of_deaths_2024_25 - datum.pct_of_deaths_10yr_avg",
+      "as": "gap"
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "age_group",
+      "type": "ordinal",
+      "sort": {
+        "field": "age_order",
+        "order": "ascending"
+      },
+      "title": "Age group (years)",
+      "axis": {
+        "ticks": false,
+        "domain": false
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 3
+      },
+      "encoding": {
+        "x": {
+          "field": "pct_of_deaths_10yr_avg",
+          "type": "quantitative",
+          "title": "% of all drowning deaths",
+          "scale": {
+            "domain": [
+              0,
+              11
+            ]
+          },
+          "axis": {
+            "format": "d",
+            "tickCount": 6
+          }
+        },
+        "x2": {
+          "field": "pct_of_deaths_2024_25"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.gap > 0",
+            "value": "#f4a4a8"
+          },
+          "value": "#cfdbe3"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "fold": [
+            "pct_of_deaths_10yr_avg",
+            "pct_of_deaths_2024_25"
+          ],
+          "as": [
+            "series_key",
+            "pct"
+          ]
+        },
+        {
+          "calculate": "datum.series_key == 'pct_of_deaths_10yr_avg' ? '10-year average' : '2024/25'",
+          "as": "series"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 110,
+        "opacity": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "pct",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "series",
+          "type": "nominal",
+          "title": null,
+          "scale": {
+            "domain": [
+              "10-year average",
+              "2024/25"
+            ],
+            "range": [
+              "#8a99a6",
+              "#d7262e"
+            ]
+          },
+          "legend": {
+            "orient": "top"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "age_group",
+            "title": "Age group"
+          },
+          {
+            "field": "series",
+            "title": "Period"
+          },
+          {
+            "field": "pct",
+            "title": "% of deaths"
+          },
+          {
+            "field": "rate_2024_25_per_100k",
+            "title": "2024/25 rate per 100,000",
+            "format": ".2f"
+          }
+        ]
+      }
+    }
+  ]
+}

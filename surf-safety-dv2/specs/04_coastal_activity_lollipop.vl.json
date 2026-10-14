@@ -1,0 +1,101 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Lollipop chart: share of Australian coastal drowning deaths by activity, 2020/21 to 2024/25.",
+  "width": "container",
+  "height": 300,
+  "data": {
+    "url": "data/aus_coastal_drowning_by_activity_2020_25.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.activity != 'Other' && datum.activity != 'Unknown'"
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "activity",
+      "type": "nominal",
+      "sort": [
+        "Swimming and recreating",
+        "Boating",
+        "Diving/snorkelling",
+        "Falls",
+        "Rock fishing",
+        "Watercraft",
+        "Attempted rescue"
+      ],
+      "title": null,
+      "axis": {
+        "ticks": false,
+        "domain": false,
+        "labelFontSize": 12,
+        "labelLimit": 260
+      }
+    },
+    "x": {
+      "field": "pct_of_coastal_deaths",
+      "type": "quantitative",
+      "title": "% of coastal drowning deaths",
+      "scale": {
+        "domain": [
+          0,
+          40
+        ]
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#8a99a6",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x2": {
+          "datum": 0
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 160,
+        "opacity": 1
+      },
+      "encoding": {
+        "color": {
+          "condition": {
+            "test": "datum.activity == 'Swimming and recreating'",
+            "value": "#d7262e"
+          },
+          "value": "#123b57"
+        },
+        "tooltip": [
+          {
+            "field": "activity",
+            "title": "Activity"
+          },
+          {
+            "field": "pct_of_coastal_deaths",
+            "title": "% of coastal deaths"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 12,
+        "fontSize": 12
+      },
+      "encoding": {
+        "text": {
+          "field": "pct_of_coastal_deaths",
+          "format": ".0f"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+region,state,rate_per_100k,region_type,fewer_than_10_cases
+Torres and Cape,QLD,4.95,All regions,no
+Top End,NT,4.69,All regions,yes
+Kimberley,WA,4.49,All regions,no
+Big Rivers,NT,3.79,All regions,yes
+South East TAS,TAS,3.42,All regions,no
+Midwest WA,WA,3.09,All regions,no
+North West QLD,QLD,2.99,All regions,yes
+Cairns and Hinterland,QLD,2.95,All regions,no
+Mid North Coast NSW,NSW,2.66,All regions,no
+Far West NSW,NSW,2.51,All regions,yes
+"Darwin, Palmerston, Litchfield",NT,2.38,Metro,no
+Sunshine Coast,QLD,1.37,Metro,no
+Gold Coast,QLD,1.28,Metro,no
+South Perth,WA,1.23,Metro,no
+Hobart,TAS,1.18,Metro,no
+North Perth,WA,1.13,Metro,no
+Sydney,NSW,1.13,Metro,no
+South Eastern Sydney,NSW,1.12,Metro,no
+East Perth,WA,1.06,Metro,no
+West Moreton,QLD,1.05,Metro,no

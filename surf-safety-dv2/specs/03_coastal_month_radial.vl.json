@@ -1,0 +1,198 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Radial bar chart: share of Australian coastal drowning deaths by month, 2020/21 to 2024/25, coloured by season.",
+  "width": 360,
+  "height": 360,
+  "data": {
+    "url": "data/aus_coastal_drowning_by_month_2020_25.csv"
+  },
+  "transform": [
+    {
+      "calculate": "(datum.month_order - 1) * 2 * PI / 12",
+      "as": "t0"
+    },
+    {
+      "calculate": "datum.month_order * 2 * PI / 12",
+      "as": "t1"
+    },
+    {
+      "calculate": "(datum.month_order - 0.5) * 2 * PI / 12",
+      "as": "tmid"
+    }
+  ],
+  "encoding": {},
+  "layer": [
+    {
+      "mark": {
+        "type": "arc",
+        "innerRadius": 30,
+        "stroke": "#ffffff",
+        "strokeWidth": 2,
+        "padAngle": 0.01
+      },
+      "encoding": {
+        "color": {
+          "field": "season",
+          "type": "nominal",
+          "title": "Season",
+          "scale": {
+            "domain": [
+              "Summer",
+              "Autumn",
+              "Winter",
+              "Spring"
+            ],
+            "range": [
+              "#d7262e",
+              "#f2b705",
+              "#123b57",
+              "#5ea9c4"
+            ]
+          },
+          "legend": {
+            "orient": "right"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "month",
+            "title": "Month"
+          },
+          {
+            "field": "season",
+            "title": "Season"
+          },
+          {
+            "field": "pct_of_coastal_deaths",
+            "title": "% of coastal deaths"
+          }
+        ],
+        "theta": {
+          "field": "t0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              6.2832
+            ],
+            "range": [
+              0,
+              6.2832
+            ]
+          }
+        },
+        "theta2": {
+          "field": "t1"
+        },
+        "radius": {
+          "field": "pct_of_coastal_deaths",
+          "type": "quantitative",
+          "scale": {
+            "type": "sqrt",
+            "zero": true,
+            "domain": [
+              0,
+              16
+            ],
+            "range": [
+              30,
+              160
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "radiusOffset": 14,
+        "fontSize": 11
+      },
+      "encoding": {
+        "theta": {
+          "field": "tmid",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              6.2832
+            ],
+            "range": [
+              0,
+              6.2832
+            ]
+          }
+        },
+        "radius": {
+          "field": "pct_of_coastal_deaths",
+          "type": "quantitative",
+          "scale": {
+            "type": "sqrt",
+            "zero": true,
+            "domain": [
+              0,
+              16
+            ],
+            "range": [
+              30,
+              160
+            ]
+          }
+        },
+        "text": {
+          "field": "month"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "radiusOffset": -12,
+        "fontSize": 10,
+        "fontWeight": 600,
+        "color": "#ffffff"
+      },
+      "transform": [
+        {
+          "filter": "datum.pct_of_coastal_deaths >= 11"
+        }
+      ],
+      "encoding": {
+        "theta": {
+          "field": "tmid",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              6.2832
+            ],
+            "range": [
+              0,
+              6.2832
+            ]
+          }
+        },
+        "radius": {
+          "field": "pct_of_coastal_deaths",
+          "type": "quantitative",
+          "scale": {
+            "type": "sqrt",
+            "zero": true,
+            "domain": [
+              0,
+              16
+            ],
+            "range": [
+              30,
+              160
+            ]
+          }
+        },
+        "text": {
+          "field": "pct_of_coastal_deaths",
+          "format": ".0f"
+        }
+      }
+    }
+  ]
+}
