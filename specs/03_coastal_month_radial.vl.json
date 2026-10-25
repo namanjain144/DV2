@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Radial bar chart: share of Australian coastal drowning deaths by month, 2020/21 to 2024/25, coloured by season.",
-  "width": 360,
-  "height": 360,
+  "width": 420,
+  "height": 420,
   "data": {
     "url": "data/aus_coastal_drowning_by_month_2020_25.csv"
   },
@@ -95,8 +95,8 @@
               16
             ],
             "range": [
-              30,
-              160
+              34,
+              190
             ]
           }
         }
@@ -134,8 +134,8 @@
               16
             ],
             "range": [
-              30,
-              160
+              34,
+              190
             ]
           }
         },
@@ -183,8 +183,8 @@
               16
             ],
             "range": [
-              30,
-              160
+              34,
+              190
             ]
           }
         },

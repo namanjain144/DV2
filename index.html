@@ -136,13 +136,13 @@
     <div class="row">
       <div class="text">
         <h3>Many were born overseas</h3>
-        <p>Each square is about 1% of coastal drowning deaths over five years.</p>
+        <p>Each line runs from a continent to Australia. <strong>Thicker lines mean more deaths</strong> among people born there.</p>
         <p>Only 41% of people who drowned on the coast were born in Australia. <strong>Almost one in five was born in Asia</strong>, and the birthplace of another 22% is unknown.</p>
         <p>This suggests beach safety messages need to reach people who did not grow up near Australian surf beaches.</p>
       </div>
       <figure>
         <div id="vis-birth" class="chart"></div>
-        <figcaption>Coastal drowning deaths by continent of birth, 2020/21 to 2024/25. The report rounds percentages, so 99 squares are shown. Source: Royal Life Saving National Drowning Report 2025.</figcaption>
+        <figcaption>Flow map of coastal drowning deaths by continent of birth, 2020/21 to 2024/25. Lines start at a representative point in each continent, placed by the author. Birthplace was unknown for 22% of deaths. Source: Royal Life Saving National Drowning Report 2025. Basemap: Natural Earth via vega-datasets.</figcaption>
       </figure>
     </div>
   </div>
@@ -219,7 +219,7 @@
       <li><strong>Author:</strong> Naman, Monash University, FIT3179 Data Visualisation, Semester 2 2026. Published 25 October 2026.</li>
       <li><strong>Data source 1:</strong> Royal Life Saving Society - Australia (2025), <em>National Drowning Report 2025</em>. <a href="https://doi.org/10.62977/118009">doi.org/10.62977/118009</a></li>
       <li><strong>Data source 2:</strong> Surf Life Saving Australia (2025), <em>National Coastal Safety Report 2025</em>, NSW section. <a href="https://www.surflifesaving.com.au/">surflifesaving.com.au</a></li>
-      <li><strong>Map boundaries:</strong> Australian state boundaries from the australian-states dataset by Rowan Hogan on GitHub, based on Australian Bureau of Statistics boundaries. <a href="https://github.com/rowanhogan/australian-states">github.com/rowanhogan/australian-states</a></li>
+      <li><strong>Map boundaries:</strong> Australian state boundaries from the australian-states dataset by Rowan Hogan on GitHub, based on Australian Bureau of Statistics boundaries. <a href="https://github.com/rowanhogan/australian-states">github.com/rowanhogan/australian-states</a>. World basemap from Natural Earth (public domain) via vega-datasets. <a href="https://github.com/vega/vega-datasets">github.com/vega/vega-datasets</a></li>
       <li><strong>Method:</strong> Figures were transcribed from the PDF reports into CSV files and checked against the original pages. Page references and known differences between report pages are listed in <a href="data/README.md">data/README.md</a>.</li>
       <li><strong>Tools:</strong> Charts made with Vega-Lite, except the treemap, which uses Vega because Vega-Lite has no treemap layout. AI assistance (Claude) was used to extract data from the PDFs, draft chart specifications and check grammar.</li>
     </ul>
@@ -248,7 +248,7 @@
     "#vis-rescues": "specs/08_nsw_rescues_treemap.vg.json",
     "#vis-state-tiles": "specs/09_state_change_tilemap.vl.json",
     "#vis-top-regions": "specs/10_top_regions_dotplot.vl.json",
-    "#vis-birth": "specs/11_birth_continent_waffle.vl.json",
+    "#vis-birth": "specs/11_birth_flow_map.vl.json",
     "#vis-nsw-waffles": "specs/12_nsw_profile_waffles.vl.json"
   };
   for (const [el, spec] of Object.entries(charts)) {

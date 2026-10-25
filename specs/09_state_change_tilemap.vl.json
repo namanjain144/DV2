@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Tile grid map (equal-size cartogram): change in drowning deaths in 2024/25 compared with each state's 10-year average. Every state gets the same-sized square, so small states are as visible as large ones.",
-  "width": 360,
-  "height": 360,
+  "width": "container",
+  "height": 440,
   "data": {
     "url": "data/aus_drowning_by_state_2024_25.csv"
   },
@@ -102,8 +102,8 @@
     {
       "mark": {
         "type": "text",
-        "dy": -9,
-        "fontSize": 15,
+        "dy": -11,
+        "fontSize": 18,
         "fontWeight": 700
       },
       "encoding": {
@@ -122,8 +122,8 @@
     {
       "mark": {
         "type": "text",
-        "dy": 10,
-        "fontSize": 12
+        "dy": 12,
+        "fontSize": 14
       },
       "encoding": {
         "text": {

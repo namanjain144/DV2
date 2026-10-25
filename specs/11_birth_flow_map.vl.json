@@ -1,0 +1,249 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Flow map: continent of birth of people who drowned on the Australian coast, 2020/21 to 2024/25. Each line runs from a representative point in the continent to Australia; line width shows the share of coastal drowning deaths. 41% were born in Australia and 22% have an unknown birthplace.",
+  "width": "container",
+  "height": 380,
+  "projection": {
+    "type": "equalEarth",
+    "rotate": [
+      -150,
+      0,
+      0
+    ]
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/world-110m.json",
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#e3eaee",
+        "stroke": "#e3eaee",
+        "strokeWidth": 0.5
+      },
+      "transform": [
+        {
+          "filter": "datum.id != 10"
+        }
+      ]
+    },
+    {
+      "data": {
+        "url": "data/coastal_birth_flows.csv"
+      },
+      "mark": {
+        "type": "rule",
+        "strokeCap": "round",
+        "opacity": 0.85
+      },
+      "encoding": {
+        "longitude": {
+          "field": "origin_lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "origin_lat",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "dest_lon"
+        },
+        "latitude2": {
+          "field": "dest_lat"
+        },
+        "size": {
+          "field": "pct_of_coastal_deaths",
+          "type": "quantitative",
+          "title": "Share of deaths (%)",
+          "scale": {
+            "domain": [
+              0,
+              20
+            ],
+            "range": [
+              1,
+              16
+            ]
+          },
+          "legend": {
+            "orient": "bottom-left",
+            "values": [
+              1,
+              5,
+              10,
+              18
+            ]
+          }
+        },
+        "color": {
+          "condition": {
+            "test": "datum.continent == 'Asia'",
+            "value": "#d7262e"
+          },
+          "value": "#2e6f8e"
+        },
+        "tooltip": [
+          {
+            "field": "continent",
+            "title": "Born in"
+          },
+          {
+            "field": "pct_of_coastal_deaths",
+            "title": "% of coastal deaths"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/coastal_birth_flows.csv"
+      },
+      "mark": {
+        "type": "circle",
+        "size": 50,
+        "color": "#123b57",
+        "opacity": 1
+      },
+      "encoding": {
+        "longitude": {
+          "field": "origin_lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "origin_lat",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/coastal_birth_flows.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.continent != 'Oceania'"
+        },
+        {
+          "calculate": "datum.continent + ' ' + datum.pct_of_coastal_deaths + '%'",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dy": -12,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#1d2b36"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "origin_lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "origin_lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/coastal_birth_flows.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.continent == 'Oceania'"
+        },
+        {
+          "calculate": "datum.continent + ' ' + datum.pct_of_coastal_deaths + '%'",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dy": 18,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#1d2b36"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "origin_lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "origin_lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 134,
+            "lat": -25,
+            "label": "Australia 41%"
+          }
+        ]
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "circle",
+            "size": 900,
+            "color": "#f2b705",
+            "opacity": 1,
+            "stroke": "#ffffff",
+            "strokeWidth": 2
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "dy": 0,
+            "fontSize": 12,
+            "fontWeight": 700,
+            "color": "#1d2b36",
+            "dx": -22,
+            "align": "right"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "label"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

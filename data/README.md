@@ -40,3 +40,7 @@ Covers 1 July 2024 to 30 June 2025 unless the file name says otherwise. PDF page
 - The coastal age file keeps "<1" as text for two groups. Treat it as a small value, not zero.
 - Rates marked yes in fewer_than_10_cases are flagged by the report as "interpret with caution".
 - Regional rates are by where people lived, not where they drowned.
+
+## Added for the flow map
+- coastal_birth_flows.csv: the continent-of-birth percentages from aus_coastal_drowning_by_birth_continent_2020_25.csv, with a representative origin point for each continent and a destination point in Australia, placed by the author. Australia (41%) and Unknown (22%) are not drawn as lines.
+- world-110m.json: world basemap (TopoJSON), Natural Earth via vega-datasets, https://github.com/vega/vega-datasets

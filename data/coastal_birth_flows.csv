@@ -1,0 +1,7 @@
+continent,pct_of_coastal_deaths,origin_lon,origin_lat,dest_lon,dest_lat
+Asia,18,100,32,134,-25
+Europe,10,15,50,134,-25
+Oceania,4,172,-41,134,-25
+Africa,2,20,5,134,-25
+North America,1,-100,42,134,-25
+Latin America,1,-60,-12,134,-25

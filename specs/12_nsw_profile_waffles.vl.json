@@ -50,20 +50,20 @@
       "field": "panel_order"
     },
     "header": {
-      "labelFontSize": 13,
+      "labelFontSize": 14,
       "labelFontWeight": 600,
       "labelLimit": 240,
       "labelColor": "#1d2b36"
     }
   },
   "columns": 4,
-  "spacing": 18,
+  "spacing": 22,
   "spec": {
-    "width": 150,
-    "height": 150,
+    "width": 230,
+    "height": 230,
     "mark": {
       "type": "square",
-      "size": 150,
+      "size": 330,
       "opacity": 1
     },
     "encoding": {
