@@ -112,7 +112,7 @@
       },
       "transform": [
         {
-          "filter": "indexof(['Sydney','Northern Beaches','Central Coast'], datum.branch) < 0"
+          "filter": "indexof(['Sydney','Northern Beaches','Central Coast','Far South Coast'], datum.branch) < 0"
         }
       ],
       "mark": {
@@ -205,6 +205,10 @@
       "transform": [
         {
           "filter": "datum.branch == 'Sydney'"
+        },
+        {
+          "calculate": "'Sydney: most deaths (101), lower rate'",
+          "as": "note"
         }
       ],
       "mark": {
@@ -213,7 +217,8 @@
         "dx": 18,
         "fontSize": 11,
         "color": "#1d2b36",
-        "dy": 13
+        "dy": 13,
+        "fontWeight": 600
       },
       "encoding": {
         "longitude": {
@@ -225,7 +230,38 @@
           "type": "quantitative"
         },
         "text": {
-          "field": "branch"
+          "field": "note"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/nsw_branch_locations.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.branch == 'Far South Coast'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 18,
+        "fontSize": 11,
+        "color": "#d7262e",
+        "fontWeight": 600
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "value": "Far South Coast: highest rate, 4.55"
         }
       }
     }

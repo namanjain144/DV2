@@ -143,6 +143,46 @@
             "format": ".2f"
           }
         }
+      },
+      {
+        "transform": [
+          {
+            "filter": "datum.region == 'Torres and Cape'"
+          }
+        ],
+        "mark": {
+          "type": "text",
+          "align": "right",
+          "dx": -14,
+          "fontSize": 12,
+          "fontWeight": 600,
+          "color": "#123b57"
+        },
+        "encoding": {
+          "text": {
+            "value": "Top three are all in remote northern Australia"
+          }
+        }
+      },
+      {
+        "transform": [
+          {
+            "filter": "datum.region == 'Darwin, Palmerston, Litchfield'"
+          }
+        ],
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "dx": 40,
+          "fontSize": 12,
+          "fontWeight": 600,
+          "color": "#123b57"
+        },
+        "encoding": {
+          "text": {
+            "value": "Almost double the next city"
+          }
+        }
       }
     ]
   }

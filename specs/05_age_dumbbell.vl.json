@@ -134,6 +134,54 @@
           }
         ]
       }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.age_group == '65-69'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -14,
+        "dy": 15,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#d7262e"
+      },
+      "encoding": {
+        "x": {
+          "field": "pct_of_deaths_2024_25",
+          "type": "quantitative"
+        },
+        "text": {
+          "value": "Biggest share: up from 7% to 10%"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.age_group == '0-4'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 12,
+        "fontSize": 12,
+        "color": "#5b6b78"
+      },
+      "encoding": {
+        "x": {
+          "field": "pct_of_deaths_10yr_avg",
+          "type": "quantitative"
+        },
+        "text": {
+          "value": "Young children down from 7% to 4%"
+        }
+      }
     }
   ]
 }

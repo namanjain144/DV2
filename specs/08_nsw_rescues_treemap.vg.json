@@ -162,7 +162,7 @@
             "signal": "indexof(['Rescue board', 'Rescue tube', 'IRB'], datum.craft_or_method) >= 0 ? '#ffffff' : '#123b57'"
           },
           "text": {
-            "signal": "(datum.x1 - datum.x0) > 70 && (datum.y1 - datum.y0) > 34 ? [datum.craft_or_method, format(datum.rescues, ',')] : ''"
+            "signal": "(datum.x1 - datum.x0) > 70 && (datum.y1 - datum.y0) > 50 ? [datum.craft_or_method, format(datum.rescues, ','), format(datum.share, '.0%') + ' of rescues'] : ((datum.x1 - datum.x0) > 70 && (datum.y1 - datum.y0) > 34 ? [datum.craft_or_method, format(datum.rescues, ',')] : '')"
           }
         },
         "update": {

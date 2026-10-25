@@ -193,6 +193,60 @@
           "format": ".0f"
         }
       }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 0,
+            "y": 392,
+            "t": [
+              "Summer (Dec to Feb):",
+              "41% of coastal deaths"
+            ],
+            "c": "#d7262e"
+          },
+          {
+            "x": 0,
+            "y": 22,
+            "t": [
+              "Quietest month:",
+              "June, 3%"
+            ],
+            "c": "#123b57"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "fontSize": 12,
+        "fontWeight": 600,
+        "lineHeight": 15
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": null,
+          "axis": null
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": null,
+          "axis": null
+        },
+        "text": {
+          "field": "t"
+        },
+        "color": {
+          "field": "c",
+          "type": "nominal",
+          "scale": null,
+          "legend": null
+        }
+      }
     }
   ]
 }

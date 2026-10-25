@@ -89,3 +89,11 @@ footer strong { color: #ffffff; }
 /* Full-width block for charts that need the whole column (small multiples) */
 .wide { margin: 8px 0 36px; }
 .wide p { font-size: 1.02rem; }
+
+/* Closing takeaways: three equal columns, each topped with a flag-coloured rule */
+.takeaways { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.takeaway { border-top: 5px solid var(--flag-red); padding-top: 14px; }
+.takeaway:nth-child(2) { border-top-color: var(--flag-yellow); }
+.takeaway:nth-child(3) { border-top-color: var(--sea-deep); }
+.takeaway p { font-size: 1rem; }
+@media (max-width: 860px) { .takeaways { grid-template-columns: 1fr; } }

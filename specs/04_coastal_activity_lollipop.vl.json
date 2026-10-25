@@ -96,6 +96,47 @@
           "format": ".0f"
         }
       }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.activity == 'Attempted rescue'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 30,
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "color": "#d7262e"
+      },
+      "encoding": {
+        "text": {
+          "value": "1 in 20 died trying to save someone"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.activity == 'Swimming and recreating'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -14,
+        "dy": -14,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#d7262e"
+      },
+      "encoding": {
+        "text": {
+          "value": "More than a third"
+        }
+      }
     }
   ]
 }

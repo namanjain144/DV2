@@ -244,6 +244,72 @@
           }
         }
       ]
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": -150,
+            "lat": -42,
+            "t": [
+              "Not shown: birthplace",
+              "unknown for 22% of deaths"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "fontSize": 11,
+        "fontStyle": "italic",
+        "color": "#5b6b78",
+        "lineHeight": 14
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 100,
+            "lat": 32,
+            "t": "Almost 1 in 5"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "dy": -28,
+        "fontSize": 11,
+        "fontStyle": "italic",
+        "color": "#d7262e"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
     }
   ]
 }
