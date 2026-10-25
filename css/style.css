@@ -85,3 +85,7 @@ a:focus-visible { outline: 3px solid var(--flag-yellow); outline-offset: 2px; }
   .flag { width: 120px; }
 }
 footer strong { color: #ffffff; }
+
+/* Full-width block for charts that need the whole column (small multiples) */
+.wide { margin: 8px 0 48px; }
+.wide p { font-size: 1.02rem; }

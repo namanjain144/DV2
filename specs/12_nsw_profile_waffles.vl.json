@@ -1,0 +1,107 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Small-multiple waffle charts: who drowned on the NSW coast in 2024/25, and where. Each grid has 100 squares; filled squares show the percentage of the 52 deaths.",
+  "data": {
+    "url": "data/nsw_coastal_drowning_profile_2024_25.csv"
+  },
+  "transform": [
+    {
+      "filter": "indexof(['Male', '55 and over', 'More than 1km from a Surf Life Saving service', 'Rip-related'], datum.item) >= 0"
+    },
+    {
+      "calculate": "{'Male':'male','55 and over':'aged 55 or over','More than 1km from a Surf Life Saving service':'far from a patrol','Rip-related':'rip-related'}[datum.item]",
+      "as": "panel"
+    },
+    {
+      "calculate": "{'Male':1,'55 and over':2,'More than 1km from a Surf Life Saving service':3,'Rip-related':4}[datum.item]",
+      "as": "panel_order"
+    },
+    {
+      "calculate": "datum.percent_of_deaths + '% ' + datum.panel",
+      "as": "panel_title"
+    },
+    {
+      "calculate": "sequence(0, 100)",
+      "as": "cell"
+    },
+    {
+      "flatten": [
+        "cell"
+      ]
+    },
+    {
+      "calculate": "datum.cell % 10",
+      "as": "gx"
+    },
+    {
+      "calculate": "9 - floor(datum.cell / 10)",
+      "as": "gy"
+    },
+    {
+      "calculate": "datum.cell < datum.percent_of_deaths ? 'Yes' : 'No'",
+      "as": "filled"
+    }
+  ],
+  "facet": {
+    "field": "panel_title",
+    "type": "nominal",
+    "title": null,
+    "sort": {
+      "field": "panel_order"
+    },
+    "header": {
+      "labelFontSize": 13,
+      "labelFontWeight": 600,
+      "labelLimit": 240,
+      "labelColor": "#1d2b36"
+    }
+  },
+  "columns": 4,
+  "spacing": 18,
+  "spec": {
+    "width": 150,
+    "height": 150,
+    "mark": {
+      "type": "square",
+      "size": 150,
+      "opacity": 1
+    },
+    "encoding": {
+      "x": {
+        "field": "gx",
+        "type": "ordinal",
+        "axis": null
+      },
+      "y": {
+        "field": "gy",
+        "type": "ordinal",
+        "axis": null
+      },
+      "color": {
+        "field": "filled",
+        "type": "nominal",
+        "legend": null,
+        "scale": {
+          "domain": [
+            "Yes",
+            "No"
+          ],
+          "range": [
+            "#d7262e",
+            "#e3eaee"
+          ]
+        }
+      },
+      "tooltip": [
+        {
+          "field": "panel",
+          "title": "Of NSW coastal drowning deaths"
+        },
+        {
+          "field": "percent_of_deaths",
+          "title": "Percent"
+        }
+      ]
+    }
+  }
+}

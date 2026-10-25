@@ -1,0 +1,68 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "Treemap (made in Vega, because Vega-Lite has no treemap layout): NSW surf rescues in 2024/25 by craft or method. Rectangle area is proportional to the number of rescues.",
+  "width": 620,
+  "height": 340,
+  "padding": 0,
+  "autosize": "none",
+  "data": [
+    {
+      "name": "rescues",
+      "url": "data/nsw_rescues_2024_25.csv",
+      "format": {"type": "csv", "parse": {"rescues": "number"}},
+      "transform": [
+        {"type": "joinaggregate", "fields": ["rescues"], "ops": ["sum"], "as": ["total"]},
+        {"type": "formula", "expr": "datum.rescues / datum.total", "as": "share"}
+      ]
+    },
+    {
+      "name": "tree",
+      "source": "rescues",
+      "transform": [
+        {"type": "nest", "keys": ["craft_or_method"]},
+        {"type": "treemap", "field": "rescues", "sort": {"field": "value", "order": "descending"}, "round": true, "method": "squarify", "ratio": 1.4, "size": [{"signal": "width"}, {"signal": "height"}], "paddingInner": 3}
+      ]
+    },
+    {
+      "name": "leaves",
+      "source": "tree",
+      "transform": [{"type": "filter", "expr": "!datum.children"}]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color", "type": "ordinal",
+      "domain": ["Rescue board", "Rescue tube", "IRB", "No gear", "RWC", "Helicopter", "Other", "Surfboard", "JRB/ORB/RIB"],
+      "range": ["#d7262e", "#123b57", "#2e6f8e", "#5ea9c4", "#7fb8cc", "#9cc7d6", "#b9d6e1", "#cfe2ea", "#e1edf2"]
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {"data": "leaves"},
+      "encode": {
+        "enter": {
+          "fill": {"scale": "color", "field": "craft_or_method"},
+          "stroke": {"value": "#ffffff"},
+          "tooltip": {"signal": "{'Craft or method': datum.craft_or_method, 'Rescues': format(datum.rescues, ','), 'Share': format(datum.share, '.0%')}"}
+        },
+        "update": {"x": {"field": "x0"}, "y": {"field": "y0"}, "x2": {"field": "x1"}, "y2": {"field": "y1"}}
+      }
+    },
+    {
+      "type": "text",
+      "from": {"data": "leaves"},
+      "interactive": false,
+      "encode": {
+        "enter": {
+          "font": {"value": "Barlow, Helvetica Neue, Arial, sans-serif"},
+          "fontSize": {"value": 13},
+          "fontWeight": {"value": 600},
+          "fill": {"signal": "indexof(['Rescue board', 'Rescue tube', 'IRB'], datum.craft_or_method) >= 0 ? '#ffffff' : '#123b57'"},
+          "text": {"signal": "(datum.x1 - datum.x0) > 70 && (datum.y1 - datum.y0) > 34 ? [datum.craft_or_method, format(datum.rescues, ',')] : ''"}
+        },
+        "update": {"x": {"signal": "datum.x0 + 8"}, "y": {"signal": "datum.y0 + 18"}}
+      }
+    }
+  ]
+}

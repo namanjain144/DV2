@@ -1,0 +1,149 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Dot plot: the 10 regions and the 10 metropolitan regions with the highest drowning rates per 100,000 residents, 2014/15 to 2024/25. NSW regions are highlighted. Hollow dots are based on fewer than 10 deaths.",
+  "data": {
+    "url": "data/aus_top_regions_drowning_rate.csv"
+  },
+  "transform": [
+    {
+      "calculate": "datum.region + ' (' + datum.state + ')'",
+      "as": "region_label"
+    },
+    {
+      "calculate": "datum.region_type == 'Metro' ? 'Cities' : 'All regions'",
+      "as": "group"
+    }
+  ],
+  "facet": {
+    "row": {
+      "field": "group",
+      "type": "nominal",
+      "title": null,
+      "sort": [
+        "All regions",
+        "Cities"
+      ],
+      "header": {
+        "labelFontSize": 14,
+        "labelFontWeight": 600,
+        "labelAngle": 0,
+        "labelAlign": "left",
+        "labelAnchor": "start",
+        "labelOrient": "top"
+      }
+    }
+  },
+  "resolve": {
+    "scale": {
+      "y": "independent"
+    }
+  },
+  "spacing": 24,
+  "spec": {
+    "width": 420,
+    "height": {
+      "step": 22
+    },
+    "encoding": {
+      "y": {
+        "field": "region_label",
+        "type": "nominal",
+        "sort": "-x",
+        "title": null,
+        "axis": {
+          "ticks": false,
+          "domain": false,
+          "labelLimit": 300
+        }
+      },
+      "x": {
+        "field": "rate_per_100k",
+        "type": "quantitative",
+        "title": "Drowning deaths per 100,000 residents",
+        "scale": {
+          "domain": [
+            0,
+            5.5
+          ]
+        }
+      }
+    },
+    "layer": [
+      {
+        "mark": {
+          "type": "rule",
+          "color": "#e3eaee",
+          "strokeWidth": 1
+        },
+        "encoding": {
+          "x2": {
+            "datum": 0
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "point",
+          "size": 110,
+          "strokeWidth": 2,
+          "opacity": 1
+        },
+        "encoding": {
+          "color": {
+            "condition": {
+              "test": "datum.state == 'NSW'",
+              "value": "#d7262e"
+            },
+            "value": "#123b57"
+          },
+          "fill": {
+            "condition": {
+              "test": "datum.fewer_than_10_cases == 'yes'",
+              "value": "#ffffff"
+            },
+            "value": {
+              "expr": "datum.state == 'NSW' ? '#d7262e' : '#123b57'"
+            }
+          },
+          "fillOpacity": {
+            "value": 1
+          },
+          "tooltip": [
+            {
+              "field": "region",
+              "title": "Region"
+            },
+            {
+              "field": "state",
+              "title": "State"
+            },
+            {
+              "field": "rate_per_100k",
+              "title": "Rate per 100,000",
+              "format": ".2f"
+            },
+            {
+              "field": "fewer_than_10_cases",
+              "title": "Fewer than 10 deaths"
+            }
+          ]
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "dx": 10,
+          "fontSize": 11,
+          "color": "#5b6b78"
+        },
+        "encoding": {
+          "text": {
+            "field": "rate_per_100k",
+            "format": ".2f"
+          }
+        }
+      }
+    ]
+  }
+}

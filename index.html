@@ -19,7 +19,7 @@
     <div>
       <h1>Between the flags</h1>
       <p class="lede">357 people drowned in Australia in the year to June 2025. This page looks at where, when and who, and at the volunteers who pull thousands more out of the surf every summer.</p>
-      <p class="byline">By Naman, FIT3179 Data Visualisation 2. Draft, October 2026.</p>
+      <p class="byline">By Naman, FIT3179 Data Visualisation 2. 25 October 2026.</p>
     </div>
     <div class="flag" role="img" aria-label="Red and yellow surf patrol flag"></div>
   </div>
@@ -53,6 +53,30 @@
       <figure>
         <div id="vis-state-slope" class="chart"></div>
         <figcaption>Drowning deaths per 100,000 people, 10-year average compared with 2024/25. Source: Royal Life Saving National Drowning Report 2025.</figcaption>
+      </figure>
+    </div>
+    <div class="row">
+      <div class="text">
+        <h3>Compared with a normal year</h3>
+        <p>This map gives every state the same-sized square, so the ACT and Tasmania are as easy to see as Western Australia. Colour shows how far 2024/25 deaths were from each state's 10-year average.</p>
+        <p><strong>South Australia had 71% more deaths than usual.</strong> Queensland and Western Australia were both 36% higher.</p>
+        <p>The blue states recorded very few deaths (four in the NT and one in the ACT), so a small change looks large.</p>
+      </div>
+      <figure>
+        <div id="vis-state-tiles" class="chart"></div>
+        <figcaption>Tile map of the change in drowning deaths in 2024/25 compared with each state's 10-year average. Squares are arranged roughly by location but are not to scale. Source: Royal Life Saving National Drowning Report 2025.</figcaption>
+      </figure>
+    </div>
+    <div class="row">
+      <div class="text">
+        <h3>The highest risk is far from the cities</h3>
+        <p>The three regions with the highest drowning rates are all in remote northern Australia: Torres and Cape, the Top End and the Kimberley.</p>
+        <p>Among cities, Darwin's rate of 2.38 is almost double the next highest. Sydney's rate is 1.13.</p>
+        <p>These rates are based on where people lived, not where they drowned. <strong>Hollow dots</strong> are based on fewer than 10 deaths, so treat them with caution.</p>
+      </div>
+      <figure>
+        <div id="vis-top-regions" class="chart"></div>
+        <figcaption>Regions with the highest drowning deaths per 100,000 residents, 2014/15 to 2024/25. NSW regions are shown in red. Source: Royal Life Saving National Drowning Report 2025.</figcaption>
       </figure>
     </div>
   </div>
@@ -109,6 +133,18 @@
         <figcaption>Share of all Australian drowning deaths by 5-year age group, 2024/25 compared with the 10-year average (2014/15 to 2023/24). Hover for each group's drowning rate. Source: Royal Life Saving National Drowning Report 2025.</figcaption>
       </figure>
     </div>
+    <div class="row">
+      <div class="text">
+        <h3>Many were born overseas</h3>
+        <p>Each square is about 1% of coastal drowning deaths over five years.</p>
+        <p>Only 41% of people who drowned on the coast were born in Australia. <strong>Almost one in five was born in Asia</strong>, and the birthplace of another 22% is unknown.</p>
+        <p>This suggests beach safety messages need to reach people who did not grow up near Australian surf beaches.</p>
+      </div>
+      <figure>
+        <div id="vis-birth" class="chart"></div>
+        <figcaption>Coastal drowning deaths by continent of birth, 2020/21 to 2024/25. The report rounds percentages, so 99 squares are shown. Source: Royal Life Saving National Drowning Report 2025.</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
@@ -129,6 +165,14 @@
       <figure>
         <div id="vis-nsw-trend" class="chart"></div>
         <figcaption>Coastal drowning deaths in NSW each financial year (July to June). Source: Surf Life Saving Australia National Coastal Safety Report 2025.</figcaption>
+      </figure>
+    </div>
+    <div class="wide">
+      <h3>Who drowned on the NSW coast in 2024/25</h3>
+      <p>Each grid shows 100 squares. The red squares show the share of the 52 deaths. Most were men, almost half were aged 55 or over, and nearly two in three drowned more than 1 km from the nearest Surf Life Saving service.</p>
+      <figure>
+        <div id="vis-nsw-waffles" class="chart"></div>
+        <figcaption>Selected characteristics of NSW coastal drowning deaths, 2024/25. "Far from a patrol" means more than 1 km from a Surf Life Saving service. A rip current is a strong channel of water flowing away from the shore. Source: Surf Life Saving Australia National Coastal Safety Report 2025.</figcaption>
       </figure>
     </div>
     <div class="row">
@@ -157,11 +201,12 @@
       <div class="text">
         <p class="callout">3,494</p>
         <p class="callout-label">rescues on NSW beaches in 2024/25</p>
-        <p>More than four in ten were made on a rescue board, the long foam board lifesavers paddle out to swimmers. IRB means inflatable rescue boat and RWC means rescue watercraft (jet ski).</p>
+        <p>Each rectangle's size shows how many rescues were made that way. <strong>More than four in ten were made on a rescue board</strong>, the long foam board lifesavers paddle out to swimmers.</p>
+        <p>IRB means inflatable rescue boat and RWC means rescue watercraft (jet ski).</p>
       </div>
       <figure>
         <div id="vis-rescues" class="chart"></div>
-        <figcaption>NSW surf rescues by craft or method, 2024/25. JRB, ORB and RIB are other types of rescue boat. Source: Surf Life Saving Australia National Coastal Safety Report 2025.</figcaption>
+        <figcaption>Treemap of NSW surf rescues by craft or method, 2024/25. Hover over small rectangles for their numbers. JRB, ORB and RIB are other types of rescue boat. Source: Surf Life Saving Australia National Coastal Safety Report 2025.</figcaption>
       </figure>
     </div>
   </div>
@@ -171,12 +216,12 @@
   <div class="wrap">
     <h2>About this page</h2>
     <ul>
-      <li><strong>Author:</strong> Naman, Monash University, FIT3179 Data Visualisation, Semester 2 2026. Draft published October 2026.</li>
+      <li><strong>Author:</strong> Naman, Monash University, FIT3179 Data Visualisation, Semester 2 2026. Published 25 October 2026.</li>
       <li><strong>Data source 1:</strong> Royal Life Saving Society - Australia (2025), <em>National Drowning Report 2025</em>. <a href="https://doi.org/10.62977/118009">doi.org/10.62977/118009</a></li>
       <li><strong>Data source 2:</strong> Surf Life Saving Australia (2025), <em>National Coastal Safety Report 2025</em>, NSW section. <a href="https://www.surflifesaving.com.au/">surflifesaving.com.au</a></li>
       <li><strong>Map boundaries:</strong> Australian state boundaries from the australian-states dataset by Rowan Hogan on GitHub, based on Australian Bureau of Statistics boundaries. <a href="https://github.com/rowanhogan/australian-states">github.com/rowanhogan/australian-states</a></li>
       <li><strong>Method:</strong> Figures were transcribed from the PDF reports into CSV files and checked against the original pages. Page references and known differences between report pages are listed in <a href="data/README.md">data/README.md</a>.</li>
-      <li><strong>Tools:</strong> Charts made with Vega-Lite. AI assistance (Claude) was used to extract data from the PDFs, draft chart specifications and check grammar.</li>
+      <li><strong>Tools:</strong> Charts made with Vega-Lite, except the treemap, which uses Vega because Vega-Lite has no treemap layout. AI assistance (Claude) was used to extract data from the PDFs, draft chart specifications and check grammar.</li>
     </ul>
   </div>
 </footer>
@@ -200,7 +245,11 @@
     "#vis-age": "specs/05_age_dumbbell.vl.json",
     "#vis-nsw-trend": "specs/06_nsw_trend_bars.vl.json",
     "#vis-nsw-map": "specs/07_nsw_branch_symbol_map.vl.json",
-    "#vis-rescues": "specs/08_nsw_rescues_bars.vl.json"
+    "#vis-rescues": "specs/08_nsw_rescues_treemap.vg.json",
+    "#vis-state-tiles": "specs/09_state_change_tilemap.vl.json",
+    "#vis-top-regions": "specs/10_top_regions_dotplot.vl.json",
+    "#vis-birth": "specs/11_birth_continent_waffle.vl.json",
+    "#vis-nsw-waffles": "specs/12_nsw_profile_waffles.vl.json"
   };
   for (const [el, spec] of Object.entries(charts)) {
     vegaEmbed(el, spec, opts).catch(err => {

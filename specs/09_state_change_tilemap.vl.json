@@ -1,0 +1,142 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Tile grid map (equal-size cartogram): change in drowning deaths in 2024/25 compared with each state's 10-year average. Every state gets the same-sized square, so small states are as visible as large ones.",
+  "width": 360,
+  "height": 360,
+  "data": {
+    "url": "data/aus_drowning_by_state_2024_25.csv"
+  },
+  "transform": [
+    {
+      "calculate": "{'NT':1,'QLD':2,'WA':0,'SA':1,'NSW':2,'ACT':3,'VIC':2,'TAS':2}[datum.state_code]",
+      "as": "col"
+    },
+    {
+      "calculate": "{'NT':0,'QLD':0,'WA':1,'SA':1,'NSW':1,'ACT':1,'VIC':2,'TAS':3}[datum.state_code]",
+      "as": "row"
+    },
+    {
+      "calculate": "(datum.change_vs_10yr_avg_pct > 0 ? '+' : '') + datum.change_vs_10yr_avg_pct + '%'",
+      "as": "change_label"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "col",
+      "type": "ordinal",
+      "axis": null,
+      "scale": {
+        "domain": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "paddingInner": 0.08
+      }
+    },
+    "y": {
+      "field": "row",
+      "type": "ordinal",
+      "axis": null,
+      "scale": {
+        "domain": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "paddingInner": 0.08
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "cornerRadius": 3,
+        "opacity": 1
+      },
+      "encoding": {
+        "color": {
+          "field": "change_vs_10yr_avg_pct",
+          "type": "quantitative",
+          "title": "Change vs 10-year average (%)",
+          "scale": {
+            "type": "linear",
+            "domain": [
+              -75,
+              75
+            ],
+            "domainMid": 0,
+            "scheme": "redblue",
+            "reverse": true
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": 220,
+            "titleLimit": 300
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "title": "State"
+          },
+          {
+            "field": "deaths_2024_25",
+            "title": "Deaths 2024/25"
+          },
+          {
+            "field": "deaths_10yr_avg",
+            "title": "10-year average"
+          },
+          {
+            "field": "change_label",
+            "title": "Change"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -9,
+        "fontSize": 15,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "text": {
+          "field": "state_code"
+        },
+        "color": {
+          "condition": {
+            "test": "abs(datum.change_vs_10yr_avg_pct) > 40",
+            "value": "#ffffff"
+          },
+          "value": "#1d2b36"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": 10,
+        "fontSize": 12
+      },
+      "encoding": {
+        "text": {
+          "field": "change_label"
+        },
+        "color": {
+          "condition": {
+            "test": "abs(datum.change_vs_10yr_avg_pct) > 40",
+            "value": "#ffffff"
+          },
+          "value": "#1d2b36"
+        }
+      }
+    }
+  ]
+}

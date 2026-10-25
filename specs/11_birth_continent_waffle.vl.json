@@ -1,0 +1,116 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Waffle (unit) chart: each square is about 1% of Australian coastal drowning deaths, 2020/21 to 2024/25, coloured by the person's continent of birth. Percentages in the source are rounded, so 99 squares are shown.",
+  "width": 300,
+  "height": 300,
+  "data": {
+    "url": "data/aus_coastal_drowning_by_birth_continent_2020_25.csv"
+  },
+  "transform": [
+    {
+      "calculate": "{'Australia':1,'Asia':2,'Europe':3,'Oceania':4,'Africa':5,'North America':6,'Latin America':7,'Unknown':8}[datum.continent]",
+      "as": "order"
+    },
+    {
+      "calculate": "sequence(0, datum.pct_of_coastal_deaths)",
+      "as": "unit"
+    },
+    {
+      "flatten": [
+        "unit"
+      ]
+    },
+    {
+      "window": [
+        {
+          "op": "row_number",
+          "as": "pos"
+        }
+      ],
+      "sort": [
+        {
+          "field": "order"
+        },
+        {
+          "field": "unit"
+        }
+      ]
+    },
+    {
+      "calculate": "(datum.pos - 1) % 10",
+      "as": "gx"
+    },
+    {
+      "calculate": "floor((datum.pos - 1) / 10)",
+      "as": "gy"
+    }
+  ],
+  "mark": {
+    "type": "square",
+    "size": 380,
+    "opacity": 1
+  },
+  "encoding": {
+    "x": {
+      "field": "gx",
+      "type": "ordinal",
+      "axis": null
+    },
+    "y": {
+      "field": "gy",
+      "type": "ordinal",
+      "axis": null
+    },
+    "color": {
+      "field": "continent",
+      "type": "nominal",
+      "title": "Continent of birth",
+      "sort": [
+        "Australia",
+        "Asia",
+        "Europe",
+        "Oceania",
+        "Africa",
+        "North America",
+        "Latin America",
+        "Unknown"
+      ],
+      "scale": {
+        "domain": [
+          "Australia",
+          "Asia",
+          "Europe",
+          "Oceania",
+          "Africa",
+          "North America",
+          "Latin America",
+          "Unknown"
+        ],
+        "range": [
+          "#123b57",
+          "#d7262e",
+          "#f2b705",
+          "#5ea9c4",
+          "#7a4e9a",
+          "#3b8b5a",
+          "#c56a2d",
+          "#d3dadf"
+        ]
+      },
+      "legend": {
+        "orient": "right",
+        "labelExpr": "datum.label"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "continent",
+        "title": "Continent of birth"
+      },
+      {
+        "field": "pct_of_coastal_deaths",
+        "title": "% of coastal deaths"
+      }
+    ]
+  }
+}
