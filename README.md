@@ -16,3 +16,5 @@ The specs load data with relative paths, so open the page through a local server
     python3 -m http.server 8000
 
 Then visit http://localhost:8000.
+
+.
